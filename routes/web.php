@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('payment', 'PaymentController@payWithStripe')->name('make:payment');
+Route::post('post-payment', 'PaymentController@payWithStripe')->name('post:make:payment');
