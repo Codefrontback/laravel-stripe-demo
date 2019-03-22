@@ -24,5 +24,8 @@ class PaymentController extends Controller
             'description' => 'Example charge',
             'source' => $token,
         ]);
+
+        session()->flash('success', 'Payment Successful');
+        return redirect()->route('make:payment');
     }
 }

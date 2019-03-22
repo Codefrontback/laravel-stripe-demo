@@ -1,6 +1,9 @@
 @extends('welcome')
 
 @section('content')
+    @if(session()->has('success'))
+        <span class="text-success">{{ session()->get('success') }} </span>
+    @endif
     <form action="{{ route('post:make:payment') }}" method="post" id="form">
         {{ csrf_field() }}
         <h5>Pay with Stripe</h5>
