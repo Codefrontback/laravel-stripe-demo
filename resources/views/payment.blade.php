@@ -2,7 +2,8 @@
 
 @section('content')
     @if(session()->has('success'))
-        <span class="text-success">{{ session()->get('success') }} </span>
+        <br>
+        <div class="alert alert-success">{{ session()->get('success') }} </div>
     @endif
     <form action="{{ route('post:make:payment') }}" method="post" id="form">
         {{ csrf_field() }}
