@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function payWithStripe()
     {
-        return view('paywithstripe');
+        return view('payment');
     }
     public function postPayment(Request $request)
     {
@@ -34,16 +34,9 @@ class PaymentController extends Controller
                         'cvc' => $request->get('cvvNumber'),
                     ],
                 ]);
-                // $token = $stripe->tokens()->create([
-                // ‘card’ => [
-                // ‘number’ => ‘4242424242424242’,
-                // ‘exp_month’ => 10,
-                // ‘cvc’ => 314,
-                // ‘exp_year’ => 2020,
-                // ],
-                // ]);
-                if (!isset($token[‘id’])) {
-                    return redirect()->route(‘addmoney.paywithstripe’);
+
+                if (!isset($token['id'])) {
+                    return redirect()->route('addmoney.paywithstripe');
                 }
                 $charge = $stripe->charges()->create([
                     'card' => $token['id'],
@@ -55,10 +48,10 @@ class PaymentController extends Controller
                      /**
                       * Write Here Your Database insert logic.
                       */
-                 return redirect()->route(‘addmoney.paywithstripe’);
+                 return redirect()->route('addmoney.paywithstripe');
                  } else {
-                     \Session::put(‘error’,’Money not add in wallet!!’);
-                 return redirect()->route(‘addmoney.paywithstripe’);
+                     \Session::put('error','Money not add in wallet!!');
+                 return redirect()->route('addmoney.paywithstripe');
                  }
                  } catch (Exception $e) {
                                 \Session::put('error',$e->getMessage());
